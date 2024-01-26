@@ -363,6 +363,7 @@ GameObject:
   - component: {fileID: 547069764}
   - component: {fileID: 547069763}
   - component: {fileID: 547069762}
+  - component: {fileID: 547069765}
   m_Layer: 5
   m_Name: MainMenu
   m_TagString: Untagged
@@ -388,7 +389,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 58}
+  m_AnchoredPosition: {x: 0, y: 1}
   m_SizeDelta: {x: 542.7571, y: 101.767}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &547069762
@@ -434,7 +435,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 547069763}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 547069765}
+        m_TargetAssemblyTypeName: GameOverButton, Assembly-CSharp
+        m_MethodName: BackMenu
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &547069763
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -473,6 +486,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 547069760}
   m_CullTransparentMesh: 1
+--- !u!114 &547069765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 547069760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6503620d9f99f4d409c73b5621323dac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &670051299
 GameObject:
   m_ObjectHideFlags: 0
@@ -668,6 +693,7 @@ GameObject:
   - component: {fileID: 1050101986}
   - component: {fileID: 1050101985}
   - component: {fileID: 1050101984}
+  - component: {fileID: 1050101987}
   m_Layer: 5
   m_Name: Retry
   m_TagString: Untagged
@@ -693,7 +719,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 206}
+  m_AnchoredPosition: {x: 0, y: 149}
   m_SizeDelta: {x: 542.7571, y: 101.767}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1050101984
@@ -739,7 +765,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1050101985}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1050101987}
+        m_TargetAssemblyTypeName: GameOverButton, Assembly-CSharp
+        m_MethodName: Restart
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1050101985
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -778,6 +816,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1050101982}
   m_CullTransparentMesh: 1
+--- !u!114 &1050101987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1050101982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6503620d9f99f4d409c73b5621323dac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1066754646
 GameObject:
   m_ObjectHideFlags: 0
@@ -874,6 +924,7 @@ GameObject:
   - component: {fileID: 1751780081}
   - component: {fileID: 1751780080}
   - component: {fileID: 1751780079}
+  - component: {fileID: 1751780082}
   m_Layer: 5
   m_Name: NextLevel
   m_TagString: Untagged
@@ -899,7 +950,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -84}
+  m_AnchoredPosition: {x: 0, y: -141}
   m_SizeDelta: {x: 542.7571, y: 101.767}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1751780079
@@ -984,3 +1035,15 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1751780077}
   m_CullTransparentMesh: 1
+--- !u!114 &1751780082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1751780077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6503620d9f99f4d409c73b5621323dac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
