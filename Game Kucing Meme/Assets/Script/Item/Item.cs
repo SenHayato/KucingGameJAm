@@ -33,6 +33,7 @@ public class Item : MonoBehaviour
     private void ReturnToPlace()
     {
         transform.DOMove(initialPosition, itemFallDuration);
+        onItemReturn?.Invoke();
     }
 
 

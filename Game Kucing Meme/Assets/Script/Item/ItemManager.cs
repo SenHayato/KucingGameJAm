@@ -2,6 +2,7 @@ using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ItemManager : MonoBehaviour
 {
@@ -16,12 +17,20 @@ public class ItemManager : MonoBehaviour
     public Transform fallPoint;
 
     public int currentLevel = 1;
+    private int itemFallCounter;
+
+    [Header("Game Event Handler")]
+    public UnityAction onGameWin;
+    public UnityAction onGameOver;
 
     private void Awake()
     {
         // EVENT LISTENER
         foreach (var item in items)
+        {
             item.onItemClicked += OnItemClicked;
+            item.onItemReturn += OnItemReturned;
+        }
 
         ShowCurrentLevelItem();
     }
@@ -31,9 +40,7 @@ public class ItemManager : MonoBehaviour
     {
         // Clean items
         foreach (var item in items)
-        {
             item.gameObject.SetActive(false);
-        }
 
         // Shuffle the items list
         for (int i = items.Count - 1; i > 0; i--)
@@ -47,17 +54,35 @@ public class ItemManager : MonoBehaviour
 
         // Now, iterate through the shuffled list
         for (int i = 0; i < currentLevel; i++)
-        {
             if (i < items.Count)
                 items[i].gameObject.SetActive(true);
-        }
     }
+
+    private void OnItemReturned()
+    {
+        itemFallCounter--;
+
+        if (IsGameOver())
+            onGameOver?.Invoke();
+
+        Debug.Log("ITEM RETURNED");
+    }
+
+    private bool IsGameOver() => itemFallCounter <= 0;
+    private bool IsGameWin() => itemFallCounter >= currentLevel;
 
     private void OnItemClicked(Item item, GameObject go)
     {
+        itemFallCounter++;
+
+        if (IsGameWin())
+            onGameWin?.Invoke();
+
+        // Item falling animation
         Vector3 fallPosition = new Vector3(go.transform.position.x, fallPoint.transform.position.y, go.transform.position.z);
         go.transform.DOMove(fallPosition, item.itemFallDuration).SetDelay(cat.catMoveDuration);
 
+        // Human returned back item animation
         StartCoroutine(MoveHuman(item.initialPosition, item.returnToPlaceDuration * .8f));
     }
 
