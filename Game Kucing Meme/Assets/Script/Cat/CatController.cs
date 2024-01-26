@@ -9,6 +9,8 @@ public class CatController : MonoBehaviour
     public float catMoveDuration = 1;
 
     private Vector3 initialPosition;
+    
+    private bool isFacingRight = true;
 
 
     private void Awake()
@@ -28,13 +30,24 @@ public class CatController : MonoBehaviour
             // Calculate the direction to the target position
             Vector3 direction = targetPosition - transform.position;
 
+            if (direction.x > 0 && !isFacingRight || direction.x < 0 && isFacingRight)
+                Flip();
+            
             // Rotate the object to face the target position
-            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            float angle = Mathf.Atan2(direction.y, direction.x * transform.localScale.x) * Mathf.Rad2Deg;
             transform.DORotate(new Vector3(0, 0, angle), 0.5f);
 
             // Move the object using DoTween
             initialPosition = new Vector3(targetPosition.x, initialPosition.y, initialPosition.z);
             transform.DOMove(targetPosition, catMoveDuration).SetEase(Ease.OutQuad).OnComplete(() => transform.DOMove(initialPosition, catMoveDuration).SetEase(Ease.InQuad));
         }
+    }
+
+    private void Flip()
+    {
+        isFacingRight = !isFacingRight; // Flip the facing direction
+        Vector3 scale = transform.localScale;
+        scale.x *= -1; // Invert the x scale to flip horizontally
+        transform.localScale = scale;
     }
 }
