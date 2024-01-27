@@ -24,7 +24,7 @@ public class ItemManager : MonoBehaviour
     public UnityAction onGameWin;
     public UnityAction onGameOver;
 
-    private void Awake()
+    private void Start()
     {
         humanCoroutines = new List<Coroutine>();
 
