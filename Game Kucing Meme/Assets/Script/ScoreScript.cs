@@ -30,5 +30,14 @@ public class ScoreScript : MonoBehaviour
         score++;
         Skor.text = score.ToString();
         Debug.Log("Skor 1");
+
+        if (PlayerPrefs.HasKey("HS"))
+        {
+            if (score > PlayerPrefs.GetInt("HS"))
+            {
+                PlayerPrefs.SetInt("HS", score);
+
+            }
+        }
     }
 }
