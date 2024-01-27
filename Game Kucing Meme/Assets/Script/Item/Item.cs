@@ -18,6 +18,8 @@ public class Item : MonoBehaviour
 
     [HideInInspector]
     public Vector3 initialPosition;
+    [HideInInspector]
+    public Vector3 initialScale;
 
     public bool isGameOver;
 
@@ -31,6 +33,17 @@ public class Item : MonoBehaviour
     private void Awake()
     {
         initialPosition = transform.position;
+        initialScale = transform.localScale;
+    }
+
+    private void OnMouseEnter()
+    {
+        transform.DOScale(transform.localScale * 1.2f, .2f);
+    }
+
+    private void OnMouseExit()
+    {
+        transform.DOScale(initialScale, .2f);
     }
 
     private void OnMouseDown()

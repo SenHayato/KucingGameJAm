@@ -35,12 +35,12 @@ public class CatController : MonoBehaviour
             // Calculate the direction to the target position
             Vector3 direction = targetPosition - transform.position;
 
-            if (direction.x > 0 && !isFacingRight || direction.x < 0 && isFacingRight)
+            if (direction.x > 0 && isFacingRight || direction.x < 0 && !isFacingRight)
                 Flip();
             
             // Rotate the object to face the target position
-            float angle = Mathf.Atan2(direction.y, direction.x * transform.localScale.x) * Mathf.Rad2Deg;
-            transform.DORotate(new Vector3(0, 0, angle), 0.5f);
+            //float angle = Mathf.Atan2(direction.y, direction.x * transform.localScale.x) * Mathf.Rad2Deg;
+            //transform.DORotate(new Vector3(0, 0, angle), 0.5f);
 
             // Move the object using DoTween
             spriteRenderer.sprite = jumpSprite;
