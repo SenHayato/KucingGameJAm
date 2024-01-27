@@ -292,9 +292,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e9f0a445aa03c04d9ab84c43f26d8f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collider: {fileID: 0}
-  button: {fileID: 0}
-  originalScale: {x: 0, y: 0, z: 0}
 --- !u!61 &58827566
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2075,6 +2072,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   humanMoveDuration: 1
+  spriteRenderer: {fileID: 1460798287}
+  spriteHandOn: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  spriteHandOff: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
 --- !u!1 &1471769697
 GameObject:
   m_ObjectHideFlags: 0

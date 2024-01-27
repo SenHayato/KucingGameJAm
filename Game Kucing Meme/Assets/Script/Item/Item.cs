@@ -25,6 +25,8 @@ public class Item : MonoBehaviour
 
     public GameObject knockPrefab;
 
+    public List<Transform> particles;
+
     [Header("Audio Component")]
     public AudioClip itemFallClip;
     public List<AudioClip> itemRestoreClip;
@@ -34,6 +36,11 @@ public class Item : MonoBehaviour
     {
         initialPosition = transform.position;
         initialScale = transform.localScale;
+    }
+
+    private void Start()
+    {
+        DeactivateParticles();
     }
 
     private void OnMouseEnter()
@@ -68,9 +75,38 @@ public class Item : MonoBehaviour
         yield return new WaitForSeconds(returnToPlaceDuration);
         if (!isGameOver)
         {
+            ActivateParticles();
+            ShakeParticles(itemFallDuration);
             audioSource.PlayOneShot(itemRestoreClip[Random.Range(0, itemRestoreClip.Count)]);
-            transform.DOMove(initialPosition, itemFallDuration);
+            transform.DOMove(initialPosition, itemFallDuration).OnComplete(() =>
+            {
+                DeactivateParticles();
+            });
             onItemReturn?.Invoke();
+        }
+    }
+
+    private void ShakeParticles(float duration)
+    {
+        foreach (var item in particles)
+        {
+            item.DOShakePosition(duration);
+        }
+    }
+
+    private void ActivateParticles()
+    {
+        foreach (var item in particles)
+        {
+            item.gameObject.SetActive(true);
+        }
+    }
+
+    private void DeactivateParticles()
+    {
+        foreach (var item in particles)
+        {
+            item.gameObject.SetActive(false);
         }
     }
 
