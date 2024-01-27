@@ -57,7 +57,10 @@ public class GameOverButton : MonoBehaviour
         bgm.mute = true;
         winsprite[currentWinSpriteIndex].SetActive(true);
         winsprite[currentWinSpriteIndex].GetComponent<Animation>().Play();
-        currentWinSpriteIndex = (currentWinSpriteIndex < winsprite.Count) ? currentWinSpriteIndex : 0;
+        sourcesfx.loop =true;
+        sourcesfx.clip = winsfx[currentWinSpriteIndex];
+        sourcesfx.Play();
+        currentWinSpriteIndex = (currentWinSpriteIndex > winsprite.Count) ? currentWinSpriteIndex : 0;
         winmeme.enabled = true;
         losememe.enabled = false;
         
@@ -97,6 +100,7 @@ public class GameOverButton : MonoBehaviour
         sourcesfx.PlayOneShot(nextlevelsfx);
         bgm.mute = false;
         canvas.SetActive(false);
+        sourcesfx.loop = false;
         sourcesfx.Stop();
     }
 
