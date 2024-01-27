@@ -12,6 +12,8 @@ public class GameOverButton : MonoBehaviour
     public GameObject retrybutton;
     public GameObject nextlevelbutton;
     public GameObject pop;
+    public GameObject winAnn;
+    public GameObject loseAnn;
 
     public AudioClip retrysfx;
     public AudioClip menusfx;
@@ -62,6 +64,8 @@ public class GameOverButton : MonoBehaviour
         currentWinSpriteIndex = (currentWinSpriteIndex > winsprite.Count) ? currentWinSpriteIndex : 0;
         winmeme.enabled = true;
         losememe.enabled = false;
+        winAnn.SetActive(true);
+        loseAnn.SetActive(false);
         
     }
 
@@ -76,6 +80,8 @@ public class GameOverButton : MonoBehaviour
         losememe.sprite = losesprite[UnityEngine.Random.Range(0, losesprite.Count)];
         losememe.enabled = true;
         winsprite[currentWinSpriteIndex].SetActive(false);
+        winAnn.SetActive(false);
+        loseAnn.SetActive(true);
       
     }
 
