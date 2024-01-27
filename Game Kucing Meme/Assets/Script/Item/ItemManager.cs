@@ -20,7 +20,7 @@ public class ItemManager : MonoBehaviour
     public Transform fallPoint;
 
     public int currentLevel = 0;
-    private int itemFallCounter = 0;
+    public int itemFallCounter = 0;
 
     [Header("Game Event Handler")]
     public UnityAction onGameWin;

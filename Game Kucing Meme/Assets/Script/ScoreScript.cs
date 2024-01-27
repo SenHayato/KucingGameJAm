@@ -45,6 +45,9 @@ public class ScoreScript : MonoBehaviour
                 PlayerPrefs.SetInt("HS", score);
 
             }
+        } else
+        {
+            PlayerPrefs.SetInt("HS", score);
         }
     }
 }

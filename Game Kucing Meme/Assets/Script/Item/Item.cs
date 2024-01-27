@@ -59,6 +59,7 @@ public class Item : MonoBehaviour
         {
             StartCoroutine(ReturnToPlace());
             onItemClicked?.Invoke(this, gameObject);
+            Debug.Log(gameObject.name);
         }
     }
 

@@ -9,6 +9,9 @@ public class HighScore : MonoBehaviour
 
     private void Awake()
     {
-        highscore.text = PlayerPrefs.GetInt("HS").ToString();
+        if (PlayerPrefs.HasKey("HS"))
+        {
+            highscore.text = PlayerPrefs.GetInt("HS").ToString();
+        }
     }
 }

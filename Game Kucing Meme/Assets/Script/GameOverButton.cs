@@ -57,11 +57,13 @@ public class GameOverButton : MonoBehaviour
         nextlevelbutton.SetActive(true);
         sourcesfx.PlayOneShot(winsfx[UnityEngine.Random.Range(0, winsfx.Count)]);
         bgm.mute = true;
-        winsprite[currentWinSpriteIndex].SetActive(true);
         sourcesfx.loop =true;
+        foreach (var item in winsprite)
+            item.SetActive(false);
+        currentWinSpriteIndex = UnityEngine.Random.Range(0, winsprite.Count);
+        winsprite[currentWinSpriteIndex].SetActive(true);
         sourcesfx.clip = winsfx[currentWinSpriteIndex];
         sourcesfx.Play();
-        currentWinSpriteIndex = (currentWinSpriteIndex > winsprite.Count) ? currentWinSpriteIndex : 0;
         winmeme.enabled = true;
         losememe.enabled = false;
         winAnn.SetActive(true);
@@ -79,7 +81,8 @@ public class GameOverButton : MonoBehaviour
         bgm.mute = true;
         losememe.sprite = losesprite[UnityEngine.Random.Range(0, losesprite.Count)];
         losememe.enabled = true;
-        winsprite[currentWinSpriteIndex].SetActive(false);
+        foreach (var item in winsprite)
+            item.SetActive(false);
         winAnn.SetActive(false);
         loseAnn.SetActive(true);
       
