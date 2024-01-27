@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameOverButton : MonoBehaviour
 {
@@ -23,7 +24,10 @@ public class GameOverButton : MonoBehaviour
 
     [SerializeField]
     public List<Sprite> winsprite;
-    public List<Sprite> lostsprite;
+    public List<Sprite> losesprite;
+
+    public Image winmeme;
+    public Image losememe;
 
     public void Awake()
     {
@@ -40,6 +44,9 @@ public class GameOverButton : MonoBehaviour
         nextlevelbutton.SetActive(true);
         sourcesfx.PlayOneShot(winsfx[UnityEngine.Random.Range(0, winsfx.Count)]);
         bgm.mute = true;
+        winmeme.sprite = winsprite[UnityEngine.Random.Range(0, winsprite.Count)];
+        winmeme.enabled = true;
+        losememe.enabled = false;
     }
 
     private void OnGameOver()
@@ -49,6 +56,9 @@ public class GameOverButton : MonoBehaviour
         nextlevelbutton.SetActive(false);
         sourcesfx.PlayOneShot(losesfx[UnityEngine.Random.Range(0, losesfx.Count)]);
         bgm.mute = true;
+        losememe.sprite = losesprite[UnityEngine.Random.Range(0, losesprite.Count)];
+        losememe.enabled = true;
+        winmeme.enabled = false;
     }
 
     public void BackMenu(string Title)
