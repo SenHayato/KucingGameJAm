@@ -21,6 +21,9 @@ public class GameOverButton : MonoBehaviour
     public List<AudioClip> winsfx;
     public List<AudioClip> losesfx;
 
+    [SerializeField]
+    public List<Sprite> winsprite;
+    public List<Sprite> lostsprite;
 
     public void Awake()
     {
