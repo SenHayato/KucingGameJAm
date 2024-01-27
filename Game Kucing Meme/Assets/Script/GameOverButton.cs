@@ -56,7 +56,6 @@ public class GameOverButton : MonoBehaviour
         sourcesfx.PlayOneShot(winsfx[UnityEngine.Random.Range(0, winsfx.Count)]);
         bgm.mute = true;
         winsprite[currentWinSpriteIndex].SetActive(true);
-        winsprite[currentWinSpriteIndex].GetComponent<Animation>().Play();
         sourcesfx.loop =true;
         sourcesfx.clip = winsfx[currentWinSpriteIndex];
         sourcesfx.Play();

@@ -5335,8 +5335,6 @@ GameObject:
   - component: {fileID: 1962286166}
   - component: {fileID: 1962286165}
   - component: {fileID: 1962286164}
-  - component: {fileID: 1962286167}
-  - component: {fileID: 1962286168}
   m_Layer: 0
   m_Name: Human
   m_TagString: Untagged
@@ -5357,6 +5355,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   humanMoveDuration: 1
+  spriteRenderer: {fileID: 1962286165}
+  spriteHandOn: {fileID: 21300000, guid: 11fc4626f28003c4188f5e5b900ad98a, type: 3}
+  spriteHandOff: {fileID: 21300000, guid: 40f2ec4f4a4495c439aeff184a081acc, type: 3}
 --- !u!212 &1962286165
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5424,43 +5425,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &1962286167
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1962286163}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 22b9e4c41ed44644281789c2322ba334, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 2
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
---- !u!111 &1962286168
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1962286163}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 0}
-  m_Animations:
-  - {fileID: 7400000, guid: d0d130dadfb06c8498bef9cc2386f33a, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!1001 &1962458115
 PrefabInstance:
   m_ObjectHideFlags: 0
