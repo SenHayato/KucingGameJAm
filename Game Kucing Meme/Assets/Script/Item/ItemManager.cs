@@ -79,6 +79,7 @@ public class ItemManager : MonoBehaviour
 
     public void OnItemClicked(Item item, GameObject go)
     {
+        item.KnockEffect(cat.catMoveDuration);
 
         // Item falling animation
         Vector3 fallPosition = new Vector3(go.transform.position.x, fallPoint.transform.position.y, go.transform.position.z);

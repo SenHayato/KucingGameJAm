@@ -1061,6 +1061,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   catMoveDuration: 0.5
   knockSfx: {fileID: 595046332}
+  spriteRenderer: {fileID: 595046329}
+  jumpSprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  fallSprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
 --- !u!82 &595046332
 AudioSource:
   m_ObjectHideFlags: 0

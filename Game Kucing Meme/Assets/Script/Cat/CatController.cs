@@ -14,6 +14,10 @@ public class CatController : MonoBehaviour
 
     public AudioSource knockSfx;
 
+    public SpriteRenderer spriteRenderer;
+    public Sprite jumpSprite;
+    public Sprite fallSprite;
+
     private void Awake()
     {
         initialPosition = transform.position;
@@ -39,11 +43,13 @@ public class CatController : MonoBehaviour
             transform.DORotate(new Vector3(0, 0, angle), 0.5f);
 
             // Move the object using DoTween
+            spriteRenderer.sprite = jumpSprite;
             initialPosition = new Vector3(targetPosition.x, initialPosition.y, initialPosition.z);
             transform.DOMove(targetPosition, catMoveDuration).SetEase(Ease.OutQuad).OnComplete(() =>
             {
                 knockSfx.PlayOneShot(knockSfx.clip);
                 transform.DOMove(initialPosition, catMoveDuration).SetEase(Ease.InQuad);
+                spriteRenderer.sprite = fallSprite;
             });
 
         }

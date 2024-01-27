@@ -129,6 +129,7 @@ MonoBehaviour:
   returnToPlaceDuration: 5
   initialPosition: {x: 0, y: 0, z: 0}
   isGameOver: 0
+  knockPrefab: {fileID: 5530704600887021487, guid: e439ed3deef53604eaf10f0177ac4ae2, type: 3}
   itemFallClip: {fileID: 8300000, guid: de3759cb124c4f44f916cbe8c9aab49a, type: 3}
   itemRestoreClip:
   - {fileID: 8300000, guid: 0e2477fca7b5a7248a9275ce3619971d, type: 3}

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using static UnityEditor.Progress;
 
 public class Item : MonoBehaviour
 {
@@ -19,6 +20,8 @@ public class Item : MonoBehaviour
     public Vector3 initialPosition;
 
     public bool isGameOver;
+
+    public GameObject knockPrefab;
 
     [Header("Audio Component")]
     public AudioClip itemFallClip;
@@ -56,6 +59,17 @@ public class Item : MonoBehaviour
             transform.DOMove(initialPosition, itemFallDuration);
             onItemReturn?.Invoke();
         }
+    }
+
+    public void KnockEffect(float delay)
+    {
+        Invoke(nameof(KnockDelay), delay);
+    }
+
+    private void KnockDelay()
+    {
+        GameObject obj = Instantiate(knockPrefab, initialPosition, Quaternion.identity);
+        Destroy(obj, 0.2f);
     }
 
     public void PlayItemFallSFX()
