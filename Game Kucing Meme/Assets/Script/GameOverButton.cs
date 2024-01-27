@@ -35,7 +35,7 @@ public class GameOverButton : MonoBehaviour
         canvas.SetActive(true);
         retrybutton.SetActive(false);
         nextlevelbutton.SetActive(true);
-        sourcesfx.PlayOneShot(winsfx[UnityEngine.Random.Range(0, winsfx.Count - 1)]);
+        sourcesfx.PlayOneShot(winsfx[UnityEngine.Random.Range(0, winsfx.Count)]);
         bgm.mute = true;
     }
 
@@ -44,7 +44,7 @@ public class GameOverButton : MonoBehaviour
         canvas.SetActive(true);
         retrybutton.SetActive(true);
         nextlevelbutton.SetActive(false);
-        sourcesfx.PlayOneShot(losesfx[UnityEngine.Random.Range(0, losesfx.Count - 1)]);
+        sourcesfx.PlayOneShot(losesfx[UnityEngine.Random.Range(0, losesfx.Count)]);
         bgm.mute = true;
     }
 

@@ -12,6 +12,7 @@ public class CatController : MonoBehaviour
     
     private bool isFacingRight = true;
 
+    public AudioSource knockSfx;
 
     private void Awake()
     {
@@ -39,7 +40,12 @@ public class CatController : MonoBehaviour
 
             // Move the object using DoTween
             initialPosition = new Vector3(targetPosition.x, initialPosition.y, initialPosition.z);
-            transform.DOMove(targetPosition, catMoveDuration).SetEase(Ease.OutQuad).OnComplete(() => transform.DOMove(initialPosition, catMoveDuration).SetEase(Ease.InQuad));
+            transform.DOMove(targetPosition, catMoveDuration).SetEase(Ease.OutQuad).OnComplete(() =>
+            {
+                knockSfx.PlayOneShot(knockSfx.clip);
+                transform.DOMove(initialPosition, catMoveDuration).SetEase(Ease.InQuad);
+            });
+
         }
     }
 

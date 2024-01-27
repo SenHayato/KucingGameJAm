@@ -82,7 +82,7 @@ public class ItemManager : MonoBehaviour
 
         // Item falling animation
         Vector3 fallPosition = new Vector3(go.transform.position.x, fallPoint.transform.position.y, go.transform.position.z);
-        go.transform.DOMove(fallPosition, item.itemFallDuration).SetDelay(cat.catMoveDuration);
+        go.transform.DOMove(fallPosition, item.itemFallDuration).SetDelay(cat.catMoveDuration).OnComplete(() => item.PlayItemFallSFX());
         
         // Game over check
         itemFallCounter++;

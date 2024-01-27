@@ -20,6 +20,11 @@ public class Item : MonoBehaviour
 
     public bool isGameOver;
 
+    [Header("Audio Component")]
+    public AudioClip itemFallClip;
+    public List<AudioClip> itemRestoreClip;
+    public AudioSource audioSource;
+
     private void Awake()
     {
         initialPosition = transform.position;
@@ -47,10 +52,14 @@ public class Item : MonoBehaviour
         yield return new WaitForSeconds(returnToPlaceDuration);
         if (!isGameOver)
         {
+            audioSource.PlayOneShot(itemRestoreClip[Random.Range(0, itemRestoreClip.Count)]);
             transform.DOMove(initialPosition, itemFallDuration);
             onItemReturn?.Invoke();
         }
     }
 
-
+    public void PlayItemFallSFX()
+    {
+        audioSource.PlayOneShot(itemFallClip);
+    }
 }
