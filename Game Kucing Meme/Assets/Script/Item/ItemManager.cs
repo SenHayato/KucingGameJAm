@@ -18,7 +18,7 @@ public class ItemManager : MonoBehaviour
     public List<Item> items;
     public Transform fallPoint;
 
-    public int currentLevel = 1;
+    public int currentLevel = 0;
     private int itemFallCounter;
 
     [Header("Game Event Handler")]
