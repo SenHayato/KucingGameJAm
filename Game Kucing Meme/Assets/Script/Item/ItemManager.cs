@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
+using static UnityEditor.Progress;
 
 public class ItemManager : MonoBehaviour
 {
@@ -19,7 +20,7 @@ public class ItemManager : MonoBehaviour
     public Transform fallPoint;
 
     public int currentLevel = 0;
-    private int itemFallCounter;
+    private int itemFallCounter = 0;
 
     [Header("Game Event Handler")]
     public UnityAction onGameWin;
@@ -47,8 +48,8 @@ public class ItemManager : MonoBehaviour
         // Clean items
         foreach (var item in items)
         {
-            item.gameObject.SetActive(false);
             item.ResetItem();
+            item.gameObject.SetActive(false);
         }
 
         // Shuffle the items list
@@ -64,7 +65,10 @@ public class ItemManager : MonoBehaviour
         // Now, iterate through the shuffled list
         for (int i = 0; i < currentLevel; i++)
             if (i < items.Count)
+            {
                 items[i].gameObject.SetActive(true);
+                items[i].ResetItem();
+            }
     }
 
     private void OnItemReturned()
