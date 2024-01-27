@@ -17,7 +17,14 @@ public class ScoreScript : MonoBehaviour
         foreach (var item in manager.items)
         {
             item.onItemClicked += OnItemClicked;
+            item.onItemReturn += OnItemReturned;
         }
+    }
+
+    private void OnItemReturned()
+    {
+        score--;
+        Skor.text = score.ToString();
     }
 
     private void OnItemClicked(Item arg0, GameObject arg1)
