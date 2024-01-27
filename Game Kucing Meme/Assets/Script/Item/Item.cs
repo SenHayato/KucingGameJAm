@@ -32,10 +32,19 @@ public class Item : MonoBehaviour
     public List<AudioClip> itemRestoreClip;
     public AudioSource audioSource;
 
+    public Transform fallpoint;
+
     private void Awake()
     {
         initialPosition = transform.position;
         initialScale = transform.localScale;
+    }
+
+    private void OnEnable()
+    {
+        if (fallpoint != null)
+            if (Mathf.Round(transform.position.y) == fallpoint.position.y)
+                ResetItem();
     }
 
     private void Start()

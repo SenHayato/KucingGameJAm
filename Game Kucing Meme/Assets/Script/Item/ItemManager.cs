@@ -50,6 +50,7 @@ public class ItemManager : MonoBehaviour
         {
             item.ResetItem();
             item.gameObject.SetActive(false);
+            item.fallpoint = fallPoint;
         }
 
         // Shuffle the items list

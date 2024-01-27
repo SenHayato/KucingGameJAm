@@ -55,7 +55,6 @@ public class GameOverButton : MonoBehaviour
         canvas.SetActive(true);
         retrybutton.SetActive(false);
         nextlevelbutton.SetActive(true);
-        sourcesfx.PlayOneShot(winsfx[UnityEngine.Random.Range(0, winsfx.Count)]);
         bgm.mute = true;
         sourcesfx.loop =true;
         foreach (var item in winsprite)
