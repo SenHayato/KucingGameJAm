@@ -29,16 +29,20 @@ public class GameOverButton : MonoBehaviour
     public Image winmeme;
     public Image losememe;
 
+    public ScoreScript skorpause;
+
     public void Awake()
     {
         itemmanager.onGameWin += OnGameWin;
         itemmanager.onGameOver += OnGameOver;
         canvas.SetActive(false);    
        bgm.mute = false;
+        Time.timeScale = 1;
     }
 
     private void OnGameWin()
     {
+        Time.timeScale = 0;
         canvas.SetActive(true);
         retrybutton.SetActive(false);
         nextlevelbutton.SetActive(true);
@@ -47,10 +51,12 @@ public class GameOverButton : MonoBehaviour
         winmeme.sprite = winsprite[UnityEngine.Random.Range(0, winsprite.Count)];
         winmeme.enabled = true;
         losememe.enabled = false;
+        
     }
 
     private void OnGameOver()
     {
+        Time.timeScale = 0;
         canvas.SetActive(true);
         retrybutton.SetActive(true);
         nextlevelbutton.SetActive(false);
@@ -65,16 +71,19 @@ public class GameOverButton : MonoBehaviour
     {
         sourcesfx.PlayOneShot(menusfx);
         Invoke(nameof(menudelay), .5f);
+        Time.timeScale = 1;
     }
 
     public void Restart(string GameScene)
     {
+        Time.timeScale = 1;
         sourcesfx.PlayOneShot(retrysfx);
         Invoke(nameof(restartdelay), .5f);
     }
 
     public void NextLevel(string Level)
     {
+        Time.timeScale = 1;
         sourcesfx.PlayOneShot(nextlevelsfx);
         bgm.mute = false;
         canvas.SetActive(false);

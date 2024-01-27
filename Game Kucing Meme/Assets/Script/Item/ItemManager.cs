@@ -1,6 +1,7 @@
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -71,7 +72,10 @@ public class ItemManager : MonoBehaviour
         itemFallCounter--;
 
         if (IsGameOver())
+        {
             onGameOver?.Invoke();
+            hideitems();
+        }
     }
 
     private bool IsGameOver() => itemFallCounter <= 0;
@@ -89,6 +93,7 @@ public class ItemManager : MonoBehaviour
         itemFallCounter++;
         if (IsGameWin())
         {
+            hideitems();
             onGameWin?.Invoke();
 
             foreach (var i in items)
@@ -110,5 +115,13 @@ public class ItemManager : MonoBehaviour
     {
         yield return new WaitForSeconds(waitForSeconds);
         human.MoveHuman(targetPosition);
+    }
+
+    public void hideitems()
+    {
+        foreach (var item in items)
+        {
+            item.gameObject.SetActive(false);
+        }
     }
 }
