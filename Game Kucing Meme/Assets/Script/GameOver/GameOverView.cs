@@ -17,10 +17,11 @@ public class GameOverView : MonoBehaviour
         buttonNextLevel.onClick.AddListener(OnNextLevel);
     }
 
-    private void OnNextLevel()
+   public void OnNextLevel()
     {
         manager.currentLevel += addItemAmount;
         manager.ShowCurrentLevelItem();
+        
     }
 
     private void OnGameOver()

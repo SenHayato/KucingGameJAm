@@ -77,7 +77,7 @@ public class ItemManager : MonoBehaviour
     private bool IsGameOver() => itemFallCounter <= 0;
     private bool IsGameWin() => itemFallCounter >= currentLevel;
 
-    private void OnItemClicked(Item item, GameObject go)
+    public void OnItemClicked(Item item, GameObject go)
     {
 
         // Item falling animation

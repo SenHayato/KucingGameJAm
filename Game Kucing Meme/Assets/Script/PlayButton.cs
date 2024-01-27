@@ -7,7 +7,7 @@ public class PlayButton : MonoBehaviour
 {
     public void LoadScene(string GameScene)
     {
-        SceneManager.LoadScene("GameScene");
+        SceneManager.LoadScene("GameScene 1");
     }
 
 }
