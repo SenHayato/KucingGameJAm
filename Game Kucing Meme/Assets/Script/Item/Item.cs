@@ -22,6 +22,7 @@ public class Item : MonoBehaviour
     public Vector3 initialScale;
 
     public bool isGameOver;
+    public bool isClicked;
 
     public GameObject knockPrefab;
 
@@ -55,8 +56,12 @@ public class Item : MonoBehaviour
 
     private void OnMouseDown()
     {
-        StartCoroutine(ReturnToPlace());
-        onItemClicked?.Invoke(this, gameObject);
+        if (!isClicked)
+        {
+            StartCoroutine(ReturnToPlace());
+            onItemClicked?.Invoke(this, gameObject);
+            isClicked = true;
+        }
     }
 
     public void StopReturned()
@@ -81,6 +86,7 @@ public class Item : MonoBehaviour
             transform.DOMove(initialPosition, itemFallDuration).OnComplete(() =>
             {
                 DeactivateParticles();
+                isClicked = false;
             });
             onItemReturn?.Invoke();
         }
