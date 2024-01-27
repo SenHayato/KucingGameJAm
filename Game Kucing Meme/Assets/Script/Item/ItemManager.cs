@@ -87,27 +87,31 @@ public class ItemManager : MonoBehaviour
 
         // Item falling animation
         Vector3 fallPosition = new Vector3(go.transform.position.x, fallPoint.transform.position.y, go.transform.position.z);
-        go.transform.DOMove(fallPosition, item.itemFallDuration).SetDelay(cat.catMoveDuration).OnComplete(() => item.PlayItemFallSFX());
-        
-        // Game over check
-        itemFallCounter++;
-        if (IsGameWin())
+        go.transform.DOMove(fallPosition, item.itemFallDuration/3).SetDelay(cat.catMoveDuration).OnComplete(() =>
         {
-            hideitems();
-            onGameWin?.Invoke();
+            item.PlayItemFallSFX();
+            // Game over check
+            itemFallCounter++;
+            if (IsGameWin())
+            {
+                hideitems();
+                onGameWin?.Invoke();
 
-            foreach (var i in items)
-                i.StopReturned();
+                foreach (var i in items)
+                    i.StopReturned();
 
-            foreach (var coroutine in humanCoroutines)
-                StopCoroutine(coroutine);
+                foreach (var coroutine in humanCoroutines)
+                    StopCoroutine(coroutine);
 
-        } else
-        {
-            // Human returned back item animation
-            Coroutine humanCoroutine = StartCoroutine(MoveHuman(item.initialPosition, item.returnToPlaceDuration * .8f));
-            humanCoroutines.Add(humanCoroutine);
+            } else
+            {
+                // Human returned back item animation
+                Coroutine humanCoroutine = StartCoroutine(MoveHuman(item.initialPosition, item.returnToPlaceDuration * .8f));
+                humanCoroutines.Add(humanCoroutine);
+            }
         }
+        );
+        
 
     }
 

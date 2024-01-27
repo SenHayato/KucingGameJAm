@@ -11,6 +11,7 @@ public class GameOverButton : MonoBehaviour
     public ItemManager itemmanager;
     public GameObject retrybutton;
     public GameObject nextlevelbutton;
+    public GameObject pop;
 
     public AudioClip retrysfx;
     public AudioClip menusfx;
@@ -23,7 +24,8 @@ public class GameOverButton : MonoBehaviour
     public List<AudioClip> losesfx;
 
     [SerializeField]
-    public List<Sprite> winsprite;
+    public List<GameObject> winsprite;
+    public int currentWinSpriteIndex;
     public List<Sprite> losesprite;
 
     public Image winmeme;
@@ -38,6 +40,11 @@ public class GameOverButton : MonoBehaviour
         canvas.SetActive(false);    
        bgm.mute = false;
         Time.timeScale = 1;
+        //InvokeRepeating(nameof(popAnim), 1, 1);
+        foreach (var item in winsprite)
+        {
+            item.SetActive(false);
+        }
     }
 
     private void OnGameWin()
@@ -48,7 +55,9 @@ public class GameOverButton : MonoBehaviour
         nextlevelbutton.SetActive(true);
         sourcesfx.PlayOneShot(winsfx[UnityEngine.Random.Range(0, winsfx.Count)]);
         bgm.mute = true;
-        winmeme.sprite = winsprite[UnityEngine.Random.Range(0, winsprite.Count)];
+        winsprite[currentWinSpriteIndex].SetActive(true);
+        winsprite[currentWinSpriteIndex].GetComponent<Animation>().Play();
+        currentWinSpriteIndex = (currentWinSpriteIndex < winsprite.Count) ? currentWinSpriteIndex : 0;
         winmeme.enabled = true;
         losememe.enabled = false;
         
@@ -64,7 +73,8 @@ public class GameOverButton : MonoBehaviour
         bgm.mute = true;
         losememe.sprite = losesprite[UnityEngine.Random.Range(0, losesprite.Count)];
         losememe.enabled = true;
-        winmeme.enabled = false;
+        winsprite[currentWinSpriteIndex].SetActive(false);
+      
     }
 
     public void BackMenu(string Title)
@@ -101,4 +111,12 @@ public class GameOverButton : MonoBehaviour
         SceneManager.LoadScene("Title");
 
     }
+
+    //private int currentPopAnimIndex;
+
+    /*public void popAnim()
+    {        
+        winmeme.sprite = winsprite[currentPopAnimIndex];
+        currentPopAnimIndex = (currentPopAnimIndex < winsprite.Count) ? currentPopAnimIndex : 0;
+    }*/
 }
