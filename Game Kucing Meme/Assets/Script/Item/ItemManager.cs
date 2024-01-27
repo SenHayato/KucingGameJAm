@@ -84,35 +84,35 @@ public class ItemManager : MonoBehaviour
     public void OnItemClicked(Item item, GameObject go)
     {
         item.KnockEffect(cat.catMoveDuration);
+        StartCoroutine(WinCheck(item, cat.catMoveDuration));
 
         // Item falling animation
         Vector3 fallPosition = new Vector3(go.transform.position.x, fallPoint.transform.position.y, go.transform.position.z);
-        go.transform.DOMove(fallPosition, item.itemFallDuration/3).SetDelay(cat.catMoveDuration).OnComplete(() =>
+        go.transform.DOMove(fallPosition, item.itemFallDuration/3).SetDelay(cat.catMoveDuration).OnComplete(() => item.PlayItemFallSFX());
+
+    }
+
+   private IEnumerator WinCheck(Item item, float waitForSeconds)
+    {
+        yield return new WaitForSeconds(waitForSeconds);
+        itemFallCounter++;
+        if (IsGameWin())
         {
-            item.PlayItemFallSFX();
-            // Game over check
-            itemFallCounter++;
-            if (IsGameWin())
-            {
-                hideitems();
-                onGameWin?.Invoke();
+            hideitems();
+            onGameWin?.Invoke();
 
-                foreach (var i in items)
-                    i.StopReturned();
+            foreach (var i in items)
+                i.StopReturned();
 
-                foreach (var coroutine in humanCoroutines)
-                    StopCoroutine(coroutine);
+            foreach (var coroutine in humanCoroutines)
+                StopCoroutine(coroutine);
 
-            } else
-            {
-                // Human returned back item animation
-                Coroutine humanCoroutine = StartCoroutine(MoveHuman(item.initialPosition, item.returnToPlaceDuration * .8f));
-                humanCoroutines.Add(humanCoroutine);
-            }
+        } else
+        {
+            // Human returned back item animation
+            Coroutine humanCoroutine = StartCoroutine(MoveHuman(item.initialPosition, item.returnToPlaceDuration * .8f));
+            humanCoroutines.Add(humanCoroutine);
         }
-        );
-        
-
     }
 
     private IEnumerator MoveHuman(Vector3 targetPosition, float waitForSeconds)
