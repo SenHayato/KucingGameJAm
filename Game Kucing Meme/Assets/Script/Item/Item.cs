@@ -17,7 +17,8 @@ public class Item : MonoBehaviour
 
     [HideInInspector]
     public Vector3 initialPosition;
-    
+
+    public bool isGameOver;
 
     private void Awake()
     {
@@ -26,14 +27,29 @@ public class Item : MonoBehaviour
 
     private void OnMouseDown()
     {
+        StartCoroutine(ReturnToPlace());
         onItemClicked?.Invoke(this, gameObject);
-        Invoke(nameof(ReturnToPlace), returnToPlaceDuration);
     }
 
-    private void ReturnToPlace()
+    public void StopReturned()
     {
-        transform.DOMove(initialPosition, itemFallDuration);
-        onItemReturn?.Invoke();
+        isGameOver = true;
+    }
+
+    public void ResetItem()
+    {
+        transform.position = initialPosition;
+        isGameOver = false;
+    }
+
+    private IEnumerator ReturnToPlace()
+    {
+        yield return new WaitForSeconds(returnToPlaceDuration);
+        if (!isGameOver)
+        {
+            transform.DOMove(initialPosition, itemFallDuration);
+            onItemReturn?.Invoke();
+        }
     }
 
 

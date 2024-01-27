@@ -11,6 +11,7 @@ public class ItemManager : MonoBehaviour
 
     [Header("Human Component")]
     public HumanController human;
+    private List<Coroutine> humanCoroutines;
 
     [Header("Item Component")]
     public List<Item> items;
@@ -25,6 +26,8 @@ public class ItemManager : MonoBehaviour
 
     private void Awake()
     {
+        humanCoroutines = new List<Coroutine>();
+
         // EVENT LISTENER
         foreach (var item in items)
         {
@@ -36,11 +39,16 @@ public class ItemManager : MonoBehaviour
     }
 
     [NaughtyAttributes.Button("Update Current Level Value", NaughtyAttributes.EButtonEnableMode.Always)]
-    private void ShowCurrentLevelItem()
+    public void ShowCurrentLevelItem()
     {
+        itemFallCounter = 0;
+
         // Clean items
         foreach (var item in items)
+        {
             item.gameObject.SetActive(false);
+            item.ResetItem();
+        }
 
         // Shuffle the items list
         for (int i = items.Count - 1; i > 0; i--)
@@ -64,8 +72,6 @@ public class ItemManager : MonoBehaviour
 
         if (IsGameOver())
             onGameOver?.Invoke();
-
-        Debug.Log("ITEM RETURNED");
     }
 
     private bool IsGameOver() => itemFallCounter <= 0;
@@ -73,17 +79,30 @@ public class ItemManager : MonoBehaviour
 
     private void OnItemClicked(Item item, GameObject go)
     {
-        itemFallCounter++;
-
-        if (IsGameWin())
-            onGameWin?.Invoke();
 
         // Item falling animation
         Vector3 fallPosition = new Vector3(go.transform.position.x, fallPoint.transform.position.y, go.transform.position.z);
         go.transform.DOMove(fallPosition, item.itemFallDuration).SetDelay(cat.catMoveDuration);
+        
+        // Game over check
+        itemFallCounter++;
+        if (IsGameWin())
+        {
+            onGameWin?.Invoke();
 
-        // Human returned back item animation
-        StartCoroutine(MoveHuman(item.initialPosition, item.returnToPlaceDuration * .8f));
+            foreach (var i in items)
+                i.StopReturned();
+
+            foreach (var coroutine in humanCoroutines)
+                StopCoroutine(coroutine);
+
+        } else
+        {
+            // Human returned back item animation
+            Coroutine humanCoroutine = StartCoroutine(MoveHuman(item.initialPosition, item.returnToPlaceDuration * .8f));
+            humanCoroutines.Add(humanCoroutine);
+        }
+
     }
 
     private IEnumerator MoveHuman(Vector3 targetPosition, float waitForSeconds)
