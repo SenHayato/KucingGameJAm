@@ -76,9 +76,10 @@ public class GameOverButton : MonoBehaviour
         canvas.SetActive(true);
         retrybutton.SetActive(true);
         nextlevelbutton.SetActive(false);
-        sourcesfx.PlayOneShot(losesfx[UnityEngine.Random.Range(0, losesfx.Count)]);
+        int currentLoseAssetIndex = UnityEngine.Random.Range(0, losesprite.Count);
+        sourcesfx.PlayOneShot(losesfx[currentLoseAssetIndex]);
         bgm.mute = true;
-        losememe.sprite = losesprite[UnityEngine.Random.Range(0, losesprite.Count)];
+        losememe.sprite = losesprite[currentLoseAssetIndex];
         losememe.enabled = true;
         foreach (var item in winsprite)
             item.SetActive(false);

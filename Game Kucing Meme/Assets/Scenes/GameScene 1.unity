@@ -2212,9 +2212,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 8a7538488b699934082e6a753a66c16f, type: 3}
   - {fileID: 8300000, guid: a3b4c851dfcb8e54a8cc9b7e576b5cf3, type: 3}
   losesfx:
-  - {fileID: 8300000, guid: 7a68ee597ea7187418fb1b3279e21815, type: 3}
   - {fileID: 8300000, guid: 1f12006e5a7e0ad40ba81f6ee032df06, type: 3}
   - {fileID: 8300000, guid: 75e6618a10b181044b419d7ede0dfa47, type: 3}
+  - {fileID: 8300000, guid: 7a68ee597ea7187418fb1b3279e21815, type: 3}
   winsprite:
   - {fileID: 1259800081}
   - {fileID: 365282688}
