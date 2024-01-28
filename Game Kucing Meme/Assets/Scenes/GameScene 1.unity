@@ -3703,7 +3703,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79e286b9e55541d42b36a69f7529bbbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  catMoveDuration: 0.5
+  catMoveDuration: 0.25
   knockSfx: {fileID: 1246180753}
   spriteRenderer: {fileID: 1246180751}
   jumpSprite: {fileID: 21300000, guid: 3f4954bc496e2c14b87c79aef99b2fb0, type: 3}
