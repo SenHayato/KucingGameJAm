@@ -34,7 +34,7 @@ public class ItemManager : MonoBehaviour
             item.onItemClicked += OnItemClicked;
             item.onItemReturn += OnItemReturned;
         }
-
+        itemFallCounter = 0;
         ShowCurrentLevelItem();
     }
 
