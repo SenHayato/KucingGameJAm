@@ -30,6 +30,7 @@ public class Item : MonoBehaviour
     public AudioClip itemFallClip;
     public List<AudioClip> itemRestoreClip;
     public AudioSource audioSource;
+    public bool isClicked;
 
     public Transform fallpoint;
 
@@ -49,6 +50,10 @@ public class Item : MonoBehaviour
     private void Start()
     {
         DeactivateParticles();
+        if (initialPosition == transform.position)
+        {
+            isClicked = false;
+        }
     }
 
     private void OnMouseEnter()
@@ -63,11 +68,12 @@ public class Item : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (transform.position == initialPosition)
+        if (!isClicked)
         {
             StartCoroutine(ReturnToPlace());
             onItemClicked?.Invoke(this, gameObject);
             Debug.Log(gameObject.name);
+            isClicked = true;
         }
     }
 
@@ -80,6 +86,7 @@ public class Item : MonoBehaviour
     {
         transform.position = initialPosition;
         isGameOver = false;
+        isClicked = false;
     }
 
     private IEnumerator ReturnToPlace()
@@ -87,6 +94,7 @@ public class Item : MonoBehaviour
         yield return new WaitForSeconds(returnToPlaceDuration);
         if (!isGameOver)
         {
+            isClicked = false;
             ActivateParticles();
             ShakeParticles(itemFallDuration);
             audioSource.PlayOneShot(itemRestoreClip[Random.Range(0, itemRestoreClip.Count)]);
