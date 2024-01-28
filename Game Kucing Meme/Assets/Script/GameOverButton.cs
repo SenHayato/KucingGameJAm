@@ -51,7 +51,6 @@ public class GameOverButton : MonoBehaviour
 
     private void OnGameWin()
     {
-        Time.timeScale = 0;
         canvas.SetActive(true);
         retrybutton.SetActive(false);
         nextlevelbutton.SetActive(true);
@@ -72,7 +71,6 @@ public class GameOverButton : MonoBehaviour
 
     private void OnGameOver()
     {
-        Time.timeScale = 0;
         canvas.SetActive(true);
         retrybutton.SetActive(true);
         nextlevelbutton.SetActive(false);
